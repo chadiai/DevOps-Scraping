@@ -1,0 +1,41 @@
+name: build, test and upload artifact
+
+on:
+  push:
+  pull_request:
+    branches: [ master ]
+    paths:
+    - 'DevOps Scraping.sln'
+
+
+env:
+  DOTNET_VERSION: '6.0.x'
+
+jobs:
+  build-and-test:
+
+    name: test-build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Install dependencies
+      run: dotnet restore
+    
+    - name: publish
+      run: |
+          dotnet publish -r win-x64 -c Release /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true --self-contained true
+      
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Webscraper_win-x64
+        path: "./DevOps Scraping/bin/Release/net6.0-windows/win-x64/publish/**.exe"

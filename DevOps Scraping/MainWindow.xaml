@@ -1,0 +1,88 @@
+﻿<Window x:Class="DevOps_Scraping.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DevOps_Scraping"
+        mc:Ignorable="d"
+        Title="Chadi's webscraper" Height="450" Width="500"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Border Background="#0D0D0D" CornerRadius="10" BorderThickness="2">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <TextBlock Text="Chadi's Webscraper" FontSize="13" VerticalAlignment="Center" Foreground="#DEDEDE"
+                       Width="475" Height="40"
+                       Padding="5 10"
+                       MouseDown="Window_MouseDown"
+                       Grid.ColumnSpan="2"/>
+            <Grid Grid.Column="1" >
+                <Ellipse Fill="#9F0020" MouseDown="Close_Click"
+                         Margin="10 5"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Width="20" Height="20"
+                         />
+            </Grid>
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Background="#1C1C1C" >
+                <StackPanel Orientation="Horizontal"
+                        Width="400">
+                    <TextBlock Text="Search:"
+                       x:Name="searchText"
+                       Margin="10 50 0 0"
+                       HorizontalAlignment="Left"
+                       FontSize="20"
+                       Height="30" Width="80" Foreground="#DEDEDE"/>
+                    <TextBox Height="30"
+                    MinWidth="250"
+                         Margin="5 50 0 0"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         x:Name="SearchInput"/>
+                </StackPanel>
+                <StackPanel Margin="30 10 0 0" Width="400" x:Name="radioButtonStackPanel">
+                    <RadioButton VerticalContentAlignment="Center" Margin="0 10" FontSize="15"
+                                 Content="YouTube" IsChecked="True" Foreground="#DEDEDE"/>
+                    <RadioButton VerticalContentAlignment="Center" Margin="0" FontSize="15" 
+                                 Content="ICT Job" Foreground="#DEDEDE"/>
+                    <RadioButton VerticalContentAlignment="Center" Margin="0 10" FontSize="15"
+                                 Content="Ebay" Foreground="#DEDEDE"/>
+                </StackPanel>
+                <StackPanel Width="400" Margin="30 10 0 0" x:Name="checkBoxStackPanel">
+                    <CheckBox x:Name="csvBox" Content="csv" VerticalContentAlignment="Center" FontSize="15" 
+                              Foreground="#DEDEDE" IsChecked="True" Margin="0 5"/>
+                    <CheckBox x:Name="jsonBox" Content="json" VerticalContentAlignment="Center" FontSize="15" 
+                              Foreground="#DEDEDE" IsChecked="True" />
+                </StackPanel>
+                <StackPanel Width="400" Margin="30 10 0 0" x:Name="path" Orientation="Horizontal">
+
+                    <Label x:Name="labelName" Width="250" Foreground="#DEDEDE" Content="Please select a folder"
+                           HorizontalContentAlignment="Left" />
+                    <Button
+                    Width="80" FontSize="15"
+                        Content="Browse"
+                        Click="Button_Click"
+                        Background="#0D0D0D" Foreground="#DEDEDE" BorderThickness="0"/>
+
+                </StackPanel>
+                <StackPanel Margin="0 35">
+                    <Button 
+                    Width="100" FontSize="20" VerticalAlignment="Center"  Padding="10"
+                        x:Name="ScrapeButton" Content="Scrape" Click="ScrapeButton_Click"
+                        Background="#20BF55" Foreground="#0D0D0D" BorderThickness="0"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
